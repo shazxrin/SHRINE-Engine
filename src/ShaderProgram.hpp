@@ -7,10 +7,10 @@ class ShaderProgram
 {
 private:
 	unsigned int shaderProgramId = -1;
-	bool hasBuilt = false;
 	std::vector<unsigned int> shaderIds;
 
 	std::string LoadShaderSourceFile(std::string fileName);
+	void LoadShaderFromFile(std::string fileName, int shaderType);
 public:
 	ShaderProgram();
 	~ShaderProgram();

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
@@ -54,10 +56,10 @@ int main()
 
 	Model* testModel = PrimitiveModelLoader::CreateModel(vertices, indices);
 	
-	// Load and compile shaders.
+	// Load and compile shaders.	
 	ShaderProgram* shaderProgram = new ShaderProgram();
+	shaderProgram->LoadVertexShaderFromFile("shaders/vertex.glsl");
 	shaderProgram->LoadFragmentShaderFromFile("shaders/frag.glsl");
-	shaderProgram->LoadVertexShaderFromFile("shaders/vert.glsl");
 	shaderProgram->Build();
 
 	// Engine loop.

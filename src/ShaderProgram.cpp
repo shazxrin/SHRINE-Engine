@@ -27,40 +27,39 @@ ShaderProgram::~ShaderProgram()
 	glDeleteProgram(shaderProgramId);
 }
 
-void ShaderProgram::LoadVertexShaderFromFile(std::string fileName)
+void ShaderProgram::LoadShaderFromFile(std::string fileName, int shaderType) 
 {
-	const char* vertexShaderSource = LoadShaderSourceFile(fileName).c_str();
+	std::string shaderSource = LoadShaderSourceFile(fileName);
+	const char* shaderSourceStr = shaderSource.c_str();
+	const int shaderSourceStrLength = shaderSource.size();
+
+	unsigned int shaderId = glCreateShader(shaderType);
+	glShaderSource(shaderId, 1, &shaderSourceStr, &shaderSourceStrLength);
+	glCompileShader(shaderId);
 
 	GLint shaderCompileStatus;
-
-	unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShaderId, 1, &vertexShaderSource, nullptr);
-	glCompileShader(vertexShaderId);
-
-	glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &shaderCompileStatus);
+	char errorMsgBuffer[512];
+	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &shaderCompileStatus);
 	if (shaderCompileStatus != GL_TRUE) {
-		std::cout << "Failed to compile vertex shader!" << std::endl;
+		std::cout << "Failed to compile shader!" << std::endl;
+
+		glGetShaderInfoLog(shaderId, 512, NULL, errorMsgBuffer);
+		std::string errorMsg(errorMsgBuffer, 512);
+
+		std::cout << errorMsg << std::endl;
 	}
 
-	shaderIds.push_back(vertexShaderId);
+	shaderIds.push_back(shaderId);
+}
+
+void ShaderProgram::LoadVertexShaderFromFile(std::string fileName)
+{
+	LoadShaderFromFile(fileName, GL_VERTEX_SHADER);
 }
 
 void ShaderProgram::LoadFragmentShaderFromFile(std::string fileName)
 {
-	const char* fragShaderSource = LoadShaderSourceFile(fileName).c_str();
-
-	GLint shaderCompileStatus;
-
-	unsigned int fragShaderId = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragShaderId, 1, &fragShaderSource, nullptr);
-	glCompileShader(fragShaderId);
-
-	glGetShaderiv(fragShaderId, GL_COMPILE_STATUS, &shaderCompileStatus);
-	if (shaderCompileStatus != GL_TRUE) {
-		std::cout << "Failed to compile fragment shader!" << std::endl;
-	}
-
-	shaderIds.push_back(fragShaderId);
+	LoadShaderFromFile(fileName, GL_FRAGMENT_SHADER);
 }
 
 void ShaderProgram::Build()
@@ -71,6 +70,15 @@ void ShaderProgram::Build()
 	}
 	
 	glLinkProgram(shaderProgramId);
+	glValidateProgram(shaderProgramId);
+	
+	GLint shaderLinkStatus;
+	char errorMsgBuffer[512];
+	glGetProgramiv(shaderProgramId, GL_LINK_STATUS, &shaderLinkStatus);
+	if (!shaderLinkStatus) {
+		glGetProgramInfoLog(shaderProgramId, 512, NULL, errorMsgBuffer);
+		std::cout << "Failed to link shader program!" << errorMsgBuffer << std::endl;
+	}
 }
 
 void ShaderProgram::Start()
@@ -92,7 +100,7 @@ std::string ShaderProgram::LoadShaderSourceFile(std::string fileName)
 
 	std::stringstream strStream;
 	strStream << shaderSource.rdbuf();
-	shaderSourceStr = "glsl(" + strStream.str() + ")glsl";
+	shaderSourceStr = strStream.str();
 
 	shaderSource.close();
 
