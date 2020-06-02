@@ -10,6 +10,7 @@
 #include "ShaderProgram.hpp"
 
 #include <iostream>
+#include "Attribute.hpp"
 
 ShaderProgram::ShaderProgram()
 {
@@ -69,6 +70,8 @@ void ShaderProgram::Build()
 		glAttachShader(shaderProgramId, shaderId);
 	}
 	
+	glBindAttribLocation(shaderProgramId, Attribute::VERTEX_POS_LOCATION, Attribute::VERTEX_POS_NAME.data());
+
 	glLinkProgram(shaderProgramId);
 	glValidateProgram(shaderProgramId);
 	

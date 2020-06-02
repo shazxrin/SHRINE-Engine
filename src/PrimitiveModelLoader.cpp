@@ -1,4 +1,5 @@
 #include "PrimitiveModelLoader.hpp"
+#include "Attribute.hpp"
 
 unsigned int PrimitiveModelLoader::currentVAOId = 0;
 unsigned int PrimitiveModelLoader::currentVBOId = 0;
@@ -42,7 +43,7 @@ Model* PrimitiveModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::v
 		verticesData.push_back(vertex.y);
 		verticesData.push_back(vertex.z);
 	}
-	AddData(0, verticesData);
+	AddData(Attribute::VERTEX_POS_LOCATION, verticesData);
 	unsigned int vertexBufferId = currentVBOId;
 	
 	unsigned int indicesBufferId = AddIndices(indices);

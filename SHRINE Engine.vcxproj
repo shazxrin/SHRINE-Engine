@@ -29,6 +29,7 @@
     <ClCompile Include="src\ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\PrimitiveModelLoader.hpp" />
