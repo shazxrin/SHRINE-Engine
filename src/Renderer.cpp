@@ -1,8 +1,9 @@
+#include <memory>
+
 #include "Renderer.hpp"
 #include "Attribute.hpp"
 
-
-void Renderer::RenderModel(Model* model, ShaderProgram* shaderProgram)
+void Renderer::RenderModel(std::shared_ptr<Model> model, std::shared_ptr<ShaderProgram> shaderProgram)
 {
 	shaderProgram->Start();
 	glBindVertexArray(model->GetVAOId());

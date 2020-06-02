@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <memory>
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
@@ -54,10 +55,10 @@ int main()
 		1, 2, 3
 	};
 
-	Model* testModel = PrimitiveModelLoader::CreateModel(vertices, indices);
+	std::shared_ptr<Model> testModel(PrimitiveModelLoader::CreateModel(vertices, indices));
 	
 	// Load and compile shaders.	
-	ShaderProgram* shaderProgram = new ShaderProgram();
+	std::shared_ptr<ShaderProgram> shaderProgram(new ShaderProgram());
 	shaderProgram->LoadVertexShaderFromFile("shaders/vertex.glsl");
 	shaderProgram->LoadFragmentShaderFromFile("shaders/frag.glsl");
 	shaderProgram->Build();
@@ -73,9 +74,6 @@ int main()
 		glfwSwapBuffers(DisplayManager::GetWindow());
 		glfwPollEvents();
 	}
-
-	delete testModel;
-	delete shaderProgram;
 
 	DisplayManager::CloseWindow();
 

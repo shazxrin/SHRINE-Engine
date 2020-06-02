@@ -10,5 +10,5 @@
 class Renderer 
 {
 public:
-	static void RenderModel(Model* model, ShaderProgram* shaderProgram);
+	static void RenderModel(std::shared_ptr<Model> model, std::shared_ptr<ShaderProgram> shaderProgram);
 };
