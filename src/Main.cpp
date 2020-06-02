@@ -11,6 +11,7 @@
 #include "DisplayManager.hpp"
 #include "Model.hpp"
 #include "PrimitiveModelLoader.hpp"
+#include "ModelLoader.hpp"
 #include "Renderer.hpp"
 #include "ShaderProgram.hpp"
 
@@ -63,13 +64,15 @@ int main()
 	shaderProgram->LoadFragmentShaderFromFile("shaders/frag.glsl");
 	shaderProgram->Build();
 
+	std::shared_ptr<Model> testModel2(ModelLoader::LoadModelFromFile("test.obj"));
+
 	// Engine loop.
 	while (!DisplayManager::ShouldWindowClose()) 
 	{
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		Renderer::RenderModel(testModel, shaderProgram);
+		Renderer::RenderModel(testModel2, shaderProgram);
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 		glfwPollEvents();
