@@ -67,6 +67,8 @@ int main()
 	std::shared_ptr<Model> testModel2(ModelLoader::LoadModelFromFile("test.obj"));
 
 	// Engine loop.
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 	while (!DisplayManager::ShouldWindowClose()) 
 	{
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
