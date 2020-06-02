@@ -1,7 +1,7 @@
 #include <memory>
 
 #include "Renderer.hpp"
-#include "Attribute.hpp"
+#include "shader/Attribute.hpp"
 
 void Renderer::RenderModel(std::shared_ptr<Model> model, std::shared_ptr<ShaderProgram> shaderProgram)
 {

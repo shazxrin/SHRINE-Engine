@@ -1,16 +1,16 @@
-#include "PrimitiveModelLoader.hpp"
-#include "Attribute.hpp"
+#include "ManualModelLoader.hpp"
+#include "shader/Attribute.hpp"
 
-uint32_t PrimitiveModelLoader::currentVAOId = 0;
-uint32_t PrimitiveModelLoader::currentVBOId = 0;
+uint32_t ManualModelLoader::currentVAOId = 0;
+uint32_t ManualModelLoader::currentVBOId = 0;
 
-void PrimitiveModelLoader::CreateAndBindVAO()
+void ManualModelLoader::CreateAndBindVAO()
 {
 	glGenVertexArrays(1, &currentVAOId);
 	glBindVertexArray(currentVAOId);
 }
 
-void PrimitiveModelLoader::AddData(uint8_t attributeId, std::vector<float> dataVector)
+void ManualModelLoader::AddData(uint8_t attributeId, std::vector<float> dataVector)
 {
 	glGenBuffers(1, &currentVBOId);
 	glBindBuffer(GL_ARRAY_BUFFER, currentVBOId);
@@ -18,7 +18,7 @@ void PrimitiveModelLoader::AddData(uint8_t attributeId, std::vector<float> dataV
 	glVertexAttribPointer(attributeId, 3, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
-uint32_t PrimitiveModelLoader::AddIndices(std::vector<uint32_t> indices)
+uint32_t ManualModelLoader::AddIndices(std::vector<uint32_t> indices)
 {
 	uint32_t eboId = -1;
 	glGenBuffers(1, &eboId);
@@ -27,12 +27,12 @@ uint32_t PrimitiveModelLoader::AddIndices(std::vector<uint32_t> indices)
 	return eboId;
 }
 
-void PrimitiveModelLoader::UnbindVAO()
+void ManualModelLoader::UnbindVAO()
 {
 	glBindVertexArray(0);
 }
 
-Model* PrimitiveModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::vector<uint32_t> indices)
+Model* ManualModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::vector<uint32_t> indices)
 {
 	CreateAndBindVAO();
 	

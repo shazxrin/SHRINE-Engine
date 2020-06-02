@@ -8,12 +8,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/vec3.hpp>
 
+#include "model/Model.hpp"
+#include "model/ManualModelLoader.hpp"
+#include "model/ModelLoader.hpp"
+#include "shader/ShaderProgram.hpp"
 #include "DisplayManager.hpp"
-#include "Model.hpp"
-#include "PrimitiveModelLoader.hpp"
-#include "ModelLoader.hpp"
 #include "Renderer.hpp"
-#include "ShaderProgram.hpp"
 
 int main() 
 {
@@ -56,7 +56,7 @@ int main()
 		1, 2, 3
 	};
 
-	std::shared_ptr<Model> testModel(PrimitiveModelLoader::CreateModel(vertices, indices));
+	std::shared_ptr<Model> testModel(ManualModelLoader::CreateModel(vertices, indices));
 	
 	// Load and compile shaders.	
 	std::shared_ptr<ShaderProgram> shaderProgram(new ShaderProgram());

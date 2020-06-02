@@ -9,7 +9,7 @@
 
 #include "Model.hpp"
 
-class PrimitiveModelLoader
+class ManualModelLoader
 {
 private:
 	static uint32_t currentVAOId;

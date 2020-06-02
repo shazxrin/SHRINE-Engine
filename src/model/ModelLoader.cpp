@@ -2,7 +2,7 @@
 #include <cstdint>
 
 #include "ModelLoader.hpp"
-#include "PrimitiveModelLoader.hpp"
+#include "ManualModelLoader.hpp"
 
 Model* ModelLoader::LoadModelFromFile(std::string fileName)
 {
@@ -24,7 +24,7 @@ Model* ModelLoader::LoadModelFromFile(std::string fileName)
         vertexPositions.push_back(vertex.position);
     }
 
-	return PrimitiveModelLoader::CreateModel(vertexPositions, meshes[0]->GetIndices());
+	return ManualModelLoader::CreateModel(vertexPositions, meshes[0]->GetIndices());
 }
 
 void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes)

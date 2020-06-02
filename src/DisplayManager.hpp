@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Result.hpp"
+#include "utils/Result.hpp"
 
 class DisplayManager 
 {
