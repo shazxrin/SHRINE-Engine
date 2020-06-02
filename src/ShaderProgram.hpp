@@ -6,11 +6,11 @@
 class ShaderProgram
 {
 private:
-	unsigned int shaderProgramId = -1;
+	uint32_t shaderProgramId = -1;
 	std::vector<unsigned int> shaderIds;
 
 	std::string LoadShaderSourceFile(std::string fileName);
-	void LoadShaderFromFile(std::string fileName, int shaderType);
+	void LoadShaderFromFile(std::string fileName, uint32_t shaderType);
 public:
 	ShaderProgram();
 	~ShaderProgram();

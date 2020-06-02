@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cstdint>
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
@@ -8,14 +9,14 @@
 class Model 
 {
 private:
-    unsigned int vaoId;
-    std::vector<unsigned int> bufferIds;
-    unsigned int verticesCount;
+    uint32_t vaoId;
+    std::vector<uint32_t> bufferIds;
+    uint64_t verticesCount;
 public:
-    Model(unsigned int vaoId, std::vector<unsigned int> bufferIds, unsigned int verticesCount);
+    Model(uint32_t vaoId, std::vector<uint32_t> bufferIds, uint64_t verticesCount);
     ~Model();
 
-    unsigned int GetVAOId();
-    unsigned int GetVerticesCount();
+    uint32_t GetVAOId();
+    uint64_t GetVerticesCount();
 };
 

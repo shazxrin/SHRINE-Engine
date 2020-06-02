@@ -1,8 +1,8 @@
 #include "PrimitiveModelLoader.hpp"
 #include "Attribute.hpp"
 
-unsigned int PrimitiveModelLoader::currentVAOId = 0;
-unsigned int PrimitiveModelLoader::currentVBOId = 0;
+uint32_t PrimitiveModelLoader::currentVAOId = 0;
+uint32_t PrimitiveModelLoader::currentVBOId = 0;
 
 void PrimitiveModelLoader::CreateAndBindVAO()
 {
@@ -10,7 +10,7 @@ void PrimitiveModelLoader::CreateAndBindVAO()
 	glBindVertexArray(currentVAOId);
 }
 
-void PrimitiveModelLoader::AddData(unsigned int attributeId, std::vector<float> dataVector)
+void PrimitiveModelLoader::AddData(uint8_t attributeId, std::vector<float> dataVector)
 {
 	glGenBuffers(1, &currentVBOId);
 	glBindBuffer(GL_ARRAY_BUFFER, currentVBOId);
@@ -18,9 +18,9 @@ void PrimitiveModelLoader::AddData(unsigned int attributeId, std::vector<float> 
 	glVertexAttribPointer(attributeId, 3, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
-unsigned int PrimitiveModelLoader::AddIndices(std::vector<unsigned int> indices)
+uint32_t PrimitiveModelLoader::AddIndices(std::vector<uint32_t> indices)
 {
-	unsigned int eboId = -1;
+	uint32_t eboId = -1;
 	glGenBuffers(1, &eboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
@@ -32,7 +32,7 @@ void PrimitiveModelLoader::UnbindVAO()
 	glBindVertexArray(0);
 }
 
-Model* PrimitiveModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices)
+Model* PrimitiveModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::vector<uint32_t> indices)
 {
 	CreateAndBindVAO();
 	

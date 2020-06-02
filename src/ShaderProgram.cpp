@@ -28,7 +28,7 @@ ShaderProgram::~ShaderProgram()
 	glDeleteProgram(shaderProgramId);
 }
 
-void ShaderProgram::LoadShaderFromFile(std::string fileName, int shaderType) 
+void ShaderProgram::LoadShaderFromFile(std::string fileName, uint32_t shaderType)
 {
 	std::string shaderSource = LoadShaderSourceFile(fileName);
 	const char* shaderSourceStr = shaderSource.c_str();
