@@ -7,6 +7,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "ShaderProgram.hpp"
 #include "Attribute.hpp"
@@ -18,58 +19,32 @@ ShaderProgram::ShaderProgram()
 
 ShaderProgram::~ShaderProgram()
 {
-	for (auto shaderId : shaderIds)
+	for (auto shader : shaders)
 	{
-		glDetachShader(shaderProgramId, shaderId);
-		glDeleteShader(shaderId);
+		glDetachShader(shaderProgramId, shader->GetId());
 	}
+
+	shaders.clear();
 
 	glDeleteProgram(shaderProgramId);
 }
 
-void ShaderProgram::LoadShaderFromFile(std::string fileName, uint32_t shaderType)
+
+void ShaderProgram::AddShader(Shader* shader)
 {
-	std::string shaderSource = LoadShaderSourceFile(fileName);
-	const char* shaderSourceStr = shaderSource.c_str();
-	const int shaderSourceStrLength = shaderSource.size();
-
-	unsigned int shaderId = glCreateShader(shaderType);
-	glShaderSource(shaderId, 1, &shaderSourceStr, &shaderSourceStrLength);
-	glCompileShader(shaderId);
-
-	GLint shaderCompileStatus;
-	char errorMsgBuffer[512];
-	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &shaderCompileStatus);
-	if (shaderCompileStatus != GL_TRUE) {
-		std::cout << "Failed to compile shader!" << std::endl;
-
-		glGetShaderInfoLog(shaderId, 512, NULL, errorMsgBuffer);
-		std::string errorMsg(errorMsgBuffer, 512);
-
-		std::cout << errorMsg << std::endl;
-	}
-
-	shaderIds.push_back(shaderId);
-}
-
-void ShaderProgram::LoadVertexShaderFromFile(std::string fileName)
-{
-	LoadShaderFromFile(fileName, GL_VERTEX_SHADER);
-}
-
-void ShaderProgram::LoadFragmentShaderFromFile(std::string fileName)
-{
-	LoadShaderFromFile(fileName, GL_FRAGMENT_SHADER);
+	// TODO: How to create smart pointer using make_*().
+	std::shared_ptr<Shader> sharedShader(shader);
+	shaders.push_back(sharedShader);
 }
 
 void ShaderProgram::Build()
 {
-	for (auto shaderId : shaderIds)
+	for (auto shader : shaders)
 	{
-		glAttachShader(shaderProgramId, shaderId);
+		glAttachShader(shaderProgramId, shader->GetId());
 	}
 	
-	glBindAttribLocation(shaderProgramId, Attribute::VERTEX_POS_LOCATION, Attribute::VERTEX_POS_NAME.data());
+	glBindAttribLocation(shaderProgramId, Attribute::POSITION_LOCATION, Attribute::POSITION_NAME.data());
 
 	glLinkProgram(shaderProgramId);
 	glValidateProgram(shaderProgramId);
@@ -93,18 +68,9 @@ void ShaderProgram::Stop()
 	glUseProgram(0);
 }
 
-std::string ShaderProgram::LoadShaderSourceFile(std::string fileName)
+void ShaderProgram::SetMatrix4(std::string uniformName, glm::mat4 value)
 {
-	std::string shaderSourceStr;
-
-	std::ifstream shaderSource;
-	shaderSource.open(fileName);
-
-	std::stringstream strStream;
-	strStream << shaderSource.rdbuf();
-	shaderSourceStr = strStream.str();
-
-	shaderSource.close();
-
-	return shaderSourceStr;
+	// TODO: Cache uniform locations.
+	uint32_t location = glGetUniformLocation(shaderProgramId, uniformName.c_str());
+	glUniformMatrix4fv(location, 1, false, glm::value_ptr(value));
 }

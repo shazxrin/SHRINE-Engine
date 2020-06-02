@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DisplayManager.cpp" />
+    <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\model\Mesh.cpp" />
@@ -27,10 +28,13 @@
     <ClCompile Include="src\model\ModelLoader.cpp" />
     <ClCompile Include="src\model\ManualModelLoader.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\shader\Shader.cpp" />
+    <ClCompile Include="src\shader\ShaderLoader.cpp" />
     <ClCompile Include="src\utils\Result.cpp" />
     <ClCompile Include="src\shader\ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\shader\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\model\Mesh.hpp" />
@@ -38,6 +42,9 @@
     <ClInclude Include="src\model\ModelLoader.hpp" />
     <ClInclude Include="src\model\ManualModelLoader.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
+    <ClInclude Include="src\shader\Shader.hpp" />
+    <ClInclude Include="src\shader\ShaderLoader.hpp" />
+    <ClInclude Include="src\shader\Uniform.hpp" />
     <ClInclude Include="src\utils\Result.hpp" />
     <ClInclude Include="src\shader\ShaderProgram.hpp" />
     <ClInclude Include="src\model\Vertex.hpp" />

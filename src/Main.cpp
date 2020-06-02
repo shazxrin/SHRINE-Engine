@@ -12,6 +12,7 @@
 #include "model/ManualModelLoader.hpp"
 #include "model/ModelLoader.hpp"
 #include "shader/ShaderProgram.hpp"
+#include "shader/ShaderLoader.hpp"
 #include "DisplayManager.hpp"
 #include "Renderer.hpp"
 
@@ -59,12 +60,18 @@ int main()
 	std::shared_ptr<Model> testModel(ManualModelLoader::CreateModel(vertices, indices));
 	
 	// Load and compile shaders.	
+	Shader* vertShader = ShaderLoader::LoadVertexShaderFromFile("shaders/vertex.glsl");
+	Shader* fragShader = ShaderLoader::LoadFragmentShaderFromFile("shaders/frag.glsl");
 	std::shared_ptr<ShaderProgram> shaderProgram(new ShaderProgram());
-	shaderProgram->LoadVertexShaderFromFile("shaders/vertex.glsl");
-	shaderProgram->LoadFragmentShaderFromFile("shaders/frag.glsl");
+	shaderProgram->AddShader(vertShader);
+	shaderProgram->AddShader(fragShader);
 	shaderProgram->Build();
 
+	// Create entity.
 	std::shared_ptr<Model> testModel2(ModelLoader::LoadModelFromFile("test.obj"));
+	std::shared_ptr<Entity> entity(new Entity(testModel2));
+	entity->rotation = glm::vec3(25.0f, 45.0f, 0.0f);
+	entity->scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	// Engine loop.
 	glEnable(GL_CULL_FACE);
@@ -74,7 +81,7 @@ int main()
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		Renderer::RenderModel(testModel2, shaderProgram);
+		Renderer::RenderModel(entity, shaderProgram);
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 		glfwPollEvents();

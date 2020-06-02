@@ -43,7 +43,7 @@ Model* ManualModelLoader::CreateModel(std::vector<glm::vec3> vertices, std::vect
 		verticesData.push_back(vertex.y);
 		verticesData.push_back(vertex.z);
 	}
-	AddData(Attribute::VERTEX_POS_LOCATION, verticesData);
+	AddData(Attribute::POSITION_LOCATION, verticesData);
 	unsigned int vertexBufferId = currentVBOId;
 	
 	unsigned int indicesBufferId = AddIndices(indices);
