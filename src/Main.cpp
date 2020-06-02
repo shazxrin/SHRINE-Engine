@@ -4,9 +4,9 @@
 #include <sstream>
 #include <memory>
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-#include "glm/vec3.hpp"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <glm/vec3.hpp>
 
 #include "DisplayManager.hpp"
 #include "Model.hpp"

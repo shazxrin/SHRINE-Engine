@@ -31,11 +31,13 @@
   <ItemGroup>
     <ClInclude Include="src\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
+    <ClInclude Include="src\Mesh.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\PrimitiveModelLoader.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\Result.hpp" />
     <ClInclude Include="src\ShaderProgram.hpp" />
+    <ClInclude Include="src\Vertex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
