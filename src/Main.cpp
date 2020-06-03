@@ -44,21 +44,6 @@ int main()
 	// Set up viewport on the window.
 	DisplayManager::InitViewport();
 
-	// Test model.
-	std::vector<glm::vec3> vertices {
-		glm::vec3(-0.5f, 0.5f, 0.0f),
-		glm::vec3(0.5f, 0.5f, 0.0f),
-		glm::vec3(0.5f, -0.5f, 0.0f),
-		glm::vec3(-0.5f, -0.5f, 0.0f)
-	};
-
-	std::vector<unsigned int> indices {
-		0, 1, 3,
-		1, 2, 3
-	};
-
-	std::shared_ptr<Model> testModel(ManualModelLoader::CreateModel(vertices, indices));
-	
 	// Load and compile shaders.	
 	Shader* vertShader = ShaderLoader::LoadVertexShaderFromFile("shaders/vertex.glsl");
 	Shader* fragShader = ShaderLoader::LoadFragmentShaderFromFile("shaders/frag.glsl");
@@ -67,11 +52,17 @@ int main()
 	shaderProgram->AddShader(fragShader);
 	shaderProgram->Build();
 
-	// Create entity.
-	std::shared_ptr<Model> testModel2(ModelLoader::LoadModelFromFile("test.obj"));
-	std::shared_ptr<Entity> entity(new Entity(testModel2));
+	// Load model into an entity.
+	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("test.obj"));
+	std::shared_ptr<Entity> entity(new Entity(testModel));
 	entity->rotation = glm::vec3(25.0f, 45.0f, 0.0f);
-	entity->scale = glm::vec3(0.5f, 0.5f, 0.5f);
+	entity->scale = glm::vec3(2.0f, 2.0f, 2.0f);
+
+	// Setup camera.
+	std::shared_ptr<Camera> camera(new Camera());
+	camera->position = glm::vec3(0.0f, 5.0f, 3.0f);
+	camera->target = glm::vec3(0.0f, 0.0f, 0.0f);
+	camera->up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	// Engine loop.
 	glEnable(GL_CULL_FACE);
@@ -82,7 +73,14 @@ int main()
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Renderer::RenderModel(entity, shaderProgram);
+		// Rotate camera.
+		const float radius = 10.0f;
+		float camX = sin(glfwGetTime()) * radius;
+		float camZ = cos(glfwGetTime()) * radius;
+		camera->position.x = camX;
+		camera->position.z = camZ;
+
+		Renderer::RenderModel(camera, entity, shaderProgram);
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 		glfwPollEvents();
