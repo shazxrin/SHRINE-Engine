@@ -76,10 +76,11 @@ int main()
 	// Engine loop.
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
 	while (!DisplayManager::ShouldWindowClose()) 
 	{
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		Renderer::RenderModel(entity, shaderProgram);
 
