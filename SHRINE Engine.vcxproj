@@ -36,6 +36,7 @@
     <ClCompile Include="src\shader\ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Config.hpp" />
     <ClInclude Include="src\entities\Camera.hpp" />
     <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
