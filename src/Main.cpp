@@ -3,12 +3,15 @@
 #include <fstream>
 #include <sstream>
 #include <memory>
+#include <chrono>
+#include <thread>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/vec3.hpp>
 
 #include "DisplayManager.hpp"
+#include "Config.hpp"
 #include "demo/DemoScene.hpp"
 #include "Renderer.hpp"
 
@@ -44,27 +47,31 @@ int main()
 	std::shared_ptr<DemoScene> demoScene = std::make_shared<DemoScene>();
 
 	// Engine loop.
-	float prevTime = 0.0f;
-	float currentTime = 0.0f;
-	float deltaTime = 0.0f;
+	float prevTimeMillis = 0.0f;
+	float currentTimeMillis = 0.0f;
+	float deltaTimeMillis = 0.0f;
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glEnable(GL_DEPTH_TEST);
 	while (!DisplayManager::ShouldWindowClose()) 
 	{
-		// Calculate delta time (in millis).
-		currentTime = glfwGetTime() * 1000.0f;
-		deltaTime = currentTime - prevTime;
-		// TODO: Implement FPS limit here (deltaTime <= 1000/60 and sleep for 60 fps).
-		prevTime = currentTime;
+		// Calculate delta time and release CPU if necessary.
+		currentTimeMillis = glfwGetTime() * 1000.0f;
+		deltaTimeMillis = currentTimeMillis - prevTimeMillis;
+		if (deltaTimeMillis < 1000.0f / Config::TARGET_FPS)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds((1000 / Config::TARGET_FPS) - static_cast<long>(deltaTimeMillis)));
+			continue;
+		}
+		prevTimeMillis = currentTimeMillis;
 
 		glfwPollEvents();
 
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		demoScene->Update(deltaTime);
+		demoScene->Update(deltaTimeMillis);
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 	}
