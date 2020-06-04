@@ -1,40 +1,29 @@
 #include "InputManager.hpp"
 
-std::vector<KeyboardEventListener> InputManager::listeners = {};
-
-void InputManager::Callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+bool InputManager::IsKeyOfState(int32_t key, int32_t state)
 {
-	for (auto listener : listeners)
+	int32_t currentKeyState = glfwGetKey(DisplayManager::GetWindow(), key);
+	if (currentKeyState == state)
 	{
-		KeyboardEvent event;
-		switch (action)
-		{
-		case GLFW_PRESS:
-			event = KeyboardEvent::PRESSED;
-			break;
-		case GLFW_RELEASE:
-			event = KeyboardEvent::RELEASE;
-			break;
-		case GLFW_REPEAT:
-			event = KeyboardEvent::REPEAT;
-			break;
-		};
-		
-
-		listener(key, event);
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-void InputManager::Setup(GLFWwindow* window)
+bool InputManager::IsKeyPressed(int32_t key)
 {
-	glfwSetKeyCallback(window, InputManager::Callback);
+	return InputManager::IsKeyOfState(key, GLFW_PRESS);
 }
 
-void InputManager::AddListener(KeyboardEventListener listener)
+bool InputManager::IsKeyRelease(int32_t key)
 {
-	listeners.push_back(listener);
+	return InputManager::IsKeyOfState(key, GLFW_RELEASE);
 }
 
-void InputManager::RemoveListener(uint32_t listenerId)
+bool InputManager::IsKeyRepeat(int32_t key)
 {
+	return InputManager::IsKeyOfState(key, GLFW_REPEAT);
 }

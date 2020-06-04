@@ -6,17 +6,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-enum class KeyboardEvent { PRESSED, RELEASE, REPEAT };
-
-typedef void (*KeyboardEventListener)(uint32_t key, KeyboardEvent event);
+#include "DisplayManager.hpp"
 
 class InputManager
 {
 private:
-	static std::vector<KeyboardEventListener> listeners;
-	static void Callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static bool IsKeyOfState(int32_t key, int32_t state);
 public:
-	static void Setup(GLFWwindow* window);
-	static void AddListener(KeyboardEventListener listener);
-	static void RemoveListener(uint32_t listenerId);
+	static bool IsKeyPressed(int32_t key);
+	static bool IsKeyRelease(int32_t key);
+	static bool IsKeyRepeat(int32_t key);
 };
