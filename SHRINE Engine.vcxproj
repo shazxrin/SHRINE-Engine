@@ -22,6 +22,7 @@
     <ClCompile Include="src\DisplayManager.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\model\Mesh.cpp" />
     <ClCompile Include="src\model\Model.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="src\entities\Camera.hpp" />
     <ClInclude Include="src\entities\Entity.hpp" />
+    <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\shader\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\model\Mesh.hpp" />
