@@ -5,8 +5,10 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/vec2.hpp>
 
 #include "DisplayManager.hpp"
+#include "Config.hpp"
 
 class InputManager
 {
@@ -16,4 +18,6 @@ public:
 	static bool IsKeyPressed(int32_t key);
 	static bool IsKeyRelease(int32_t key);
 	static bool IsKeyRepeat(int32_t key);
+	static glm::vec2 GetMousePos();
+	static void SetMousePos(glm::vec2 pos);
 };

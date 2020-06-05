@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DisplayManager.cpp" />
+    <ClCompile Include="src\entities\Camera.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\input\InputManager.cpp" />

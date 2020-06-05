@@ -22,6 +22,7 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	
 	// Initialize OpenGL window.
 	Result result = DisplayManager::InitWindow();
@@ -42,6 +43,9 @@ int main()
 
 	// Set up viewport on the window.
 	DisplayManager::InitViewport();
+
+	glfwSetInputMode(DisplayManager::GetWindow(), GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+	glfwSetInputMode(DisplayManager::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// Set up demo scene.
 	std::shared_ptr<DemoScene> demoScene = std::make_shared<DemoScene>();

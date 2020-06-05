@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "DemoScene.hpp"
 #include "model/ModelLoader.hpp"
 
@@ -8,6 +10,7 @@ DemoScene::DemoScene()
 	camera->position = glm::vec3(0.0f, 0.0f, 3.0f);
 	camera->target = glm::vec3(0.0f, 0.0f, 0.0f);
 	camera->up = glm::vec3(0.0f, 1.0f, 0.0f);
+	camera->Update();
 
 	// Load model into an entity.
 	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("test.obj"));
@@ -26,29 +29,35 @@ DemoScene::DemoScene()
 
 void DemoScene::Update(float deltaTime)
 {
+	camera->Update();
+
+	static glm::vec2 prevMousePos = InputManager::GetMousePos();
+	glm::vec2 currentMousePos = InputManager::GetMousePos();
+	glm::vec2 deltaMousePos = prevMousePos - currentMousePos;
+	camera->Rotate(deltaMousePos.y, deltaMousePos.x);
+	prevMousePos = currentMousePos;
+
+	camera->Update();
+
 	float camMovementDelta = 0.01f * deltaTime;
 	if (InputManager::IsKeyPressed(GLFW_KEY_W))
 	{
-		camera->position.y += camMovementDelta;
-		camera->target.y += camMovementDelta;
+		camera->MoveForward(camMovementDelta);
 	}
 
 	if (InputManager::IsKeyPressed(GLFW_KEY_A))
 	{
-		camera->position.x -= camMovementDelta;
-		camera->target.x -= camMovementDelta;
+		camera->MoveLeft(camMovementDelta);
 	}
 
 	if (InputManager::IsKeyPressed(GLFW_KEY_S))
 	{
-		camera->position.y -= camMovementDelta;
-		camera->target.y -= camMovementDelta;
+		camera->MoveBackward(camMovementDelta);
 	}
 
 	if (InputManager::IsKeyPressed(GLFW_KEY_D))
 	{
-		camera->position.x += camMovementDelta;
-		camera->target.x += camMovementDelta;
+		camera->MoveRight(camMovementDelta);
 	}
 
 	Renderer::RenderModel(camera, entity, shaderProgram);

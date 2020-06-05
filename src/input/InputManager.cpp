@@ -27,3 +27,15 @@ bool InputManager::IsKeyRepeat(int32_t key)
 {
 	return InputManager::IsKeyOfState(key, GLFW_REPEAT);
 }
+
+glm::vec2 InputManager::GetMousePos()
+{
+	double x, y;
+	glfwGetCursorPos(DisplayManager::GetWindow(), &x, &y);
+	return glm::vec2(x, y);
+}
+
+void InputManager::SetMousePos(glm::vec2 pos)
+{
+	glfwSetCursorPos(DisplayManager::GetWindow(), pos.x, pos.y);
+}
