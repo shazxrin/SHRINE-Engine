@@ -4,15 +4,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Renderer.hpp"
-#include "model/Attribute.hpp"
+#include "geometry/Attribute.hpp"
 #include "shader/Uniform.hpp"
 
 void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entity> entity, std::shared_ptr<ShaderProgram> shaderProgram)
 {
 	shaderProgram->Start();
-
-	// TODO: Remove this 'wireframe' rendering mode.
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, entity->GetModel()->GetTexture()->GetTextureId());

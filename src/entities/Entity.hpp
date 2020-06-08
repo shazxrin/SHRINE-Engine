@@ -2,8 +2,9 @@
 
 #include <memory>
 
-#include <glm\vec3.hpp>
-#include <model\Model.hpp>
+#include <glm/vec3.hpp>
+
+#include "geometry/Model.hpp"
 
 class Entity {
 private:

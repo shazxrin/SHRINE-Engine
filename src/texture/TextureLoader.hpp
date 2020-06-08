@@ -2,7 +2,7 @@
 
 #include <string>
 #include <unordered_map> 
-#include <model/Texture.hpp>
+#include <texture/Texture.hpp>
 
 class TextureLoader
 {

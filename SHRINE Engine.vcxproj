@@ -25,11 +25,11 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\model\Mesh.cpp" />
-    <ClCompile Include="src\model\Model.cpp" />
-    <ClCompile Include="src\model\ModelLoader.cpp" />
-    <ClCompile Include="src\model\Texture.cpp" />
-    <ClCompile Include="src\model\TextureLoader.cpp" />
+    <ClCompile Include="src\geometry\Mesh.cpp" />
+    <ClCompile Include="src\geometry\Model.cpp" />
+    <ClCompile Include="src\geometry\ModelLoader.cpp" />
+    <ClCompile Include="src\texture\Texture.cpp" />
+    <ClCompile Include="src\texture\TextureLoader.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\demo\DemoScene.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
@@ -43,21 +43,21 @@
     <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\demo\DemoScene.hpp" />
-    <ClInclude Include="src\model\Texture.hpp" />
-    <ClInclude Include="src\model\TextureLoader.hpp" />
+    <ClInclude Include="src\texture\Texture.hpp" />
+    <ClInclude Include="src\texture\TextureLoader.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
-    <ClInclude Include="src\model\Attribute.hpp" />
+    <ClInclude Include="src\geometry\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
-    <ClInclude Include="src\model\Mesh.hpp" />
-    <ClInclude Include="src\model\Model.hpp" />
-    <ClInclude Include="src\model\ModelLoader.hpp" />
+    <ClInclude Include="src\geometry\Mesh.hpp" />
+    <ClInclude Include="src\geometry\Model.hpp" />
+    <ClInclude Include="src\geometry\ModelLoader.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\shader\Shader.hpp" />
     <ClInclude Include="src\shader\ShaderLoader.hpp" />
     <ClInclude Include="src\shader\Uniform.hpp" />
     <ClInclude Include="src\utils\Result.hpp" />
     <ClInclude Include="src\shader\ShaderProgram.hpp" />
-    <ClInclude Include="src\model\Vertex.hpp" />
+    <ClInclude Include="src\geometry\Vertex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -34,6 +34,8 @@ Texture* TextureLoader::LoadTexture(std::string fileName)
     unsigned char* data = stbi_load(fileName.c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
+        // TODO: Maybe check metadata of image filetype? Didn't include Alpha channel earlier and texture messed up.
+        // Very prone to bugs.
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }

@@ -7,7 +7,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "Texture.hpp"
+#include "texture/Texture.hpp"
 #include "Vertex.hpp"
 #include "Model.hpp"
 #include "Mesh.hpp"

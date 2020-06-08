@@ -7,7 +7,7 @@
 
 #include "ModelLoader.hpp"
 #include "Attribute.hpp"
-#include "TextureLoader.hpp"
+#include "texture/TextureLoader.hpp"
 
 uint32_t ModelLoader::currentVAOId = 0;
 uint32_t ModelLoader::currentVBOId = 0;

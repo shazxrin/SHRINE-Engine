@@ -10,7 +10,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "ShaderProgram.hpp"
-#include "model/Attribute.hpp"
+#include "geometry/Attribute.hpp"
 
 ShaderProgram::ShaderProgram()
 {
