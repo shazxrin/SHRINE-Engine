@@ -7,6 +7,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include "Texture.hpp"
 #include "Vertex.hpp"
 #include "Model.hpp"
 #include "Mesh.hpp"
@@ -25,10 +26,11 @@ private:
 	static void AddVertexes(std::vector<Vertex>& vertexes);
 	static void AddIndices(std::vector<uint32_t>& indices);
 
-	static void ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes);
+	static void ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes, std::vector<Texture*>& textures);
 	static Mesh* ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	static Texture* ProcessTexture(aiMesh* mesh, const aiScene* scene);
 
-	static Model* CreateModel(Mesh* mesh);
+	static Model* CreateModel(Mesh* mesh, Texture* texture);
 public:
 	static Model* LoadModelFromFile(std::string fileName);
 };

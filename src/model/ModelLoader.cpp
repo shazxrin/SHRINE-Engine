@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cstdint>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "ModelLoader.hpp"
-#include "model/Attribute.hpp"
+#include "Attribute.hpp"
+#include "TextureLoader.hpp"
 
 uint32_t ModelLoader::currentVAOId = 0;
 uint32_t ModelLoader::currentVBOId = 0;
@@ -63,18 +66,21 @@ void ModelLoader::AddIndices(std::vector<uint32_t>& indices)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * indices.size(), indices.data(), GL_STATIC_DRAW);
 }
 
-void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes)
+void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes, std::vector<Texture*>& textures)
 {
-    // process all the node's meshes (if any)
-    for (unsigned int i = 0; i < node->mNumMeshes; i++)
+    // Process all the node's meshes (if any).
+    for (uint32_t i = 0; i < node->mNumMeshes; i++)
     {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+
         meshes.push_back(ProcessMesh(mesh, scene));
+        textures.push_back(ProcessTexture(mesh, scene));
     }
-    // then do the same for each of its children
-    for (unsigned int i = 0; i < node->mNumChildren; i++)
+
+    // Then do the same for each of its children.
+    for (uint32_t i = 0; i < node->mNumChildren; i++)
     {
-        ProcessNode(node->mChildren[i], scene, meshes);
+        ProcessNode(node->mChildren[i], scene, meshes, textures);
     }
 }
 
@@ -123,7 +129,15 @@ Mesh* ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
     return new Mesh(vertices, indices);
 }
 
-Model* ModelLoader::CreateModel(Mesh* mesh)
+Texture* ModelLoader::ProcessTexture(aiMesh* mesh, const aiScene* scene)
+{
+    aiString path;
+    scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+    
+    return TextureLoader::LoadTexture(path.C_Str());
+}
+
+Model* ModelLoader::CreateModel(Mesh* mesh, Texture* texture)
 {
     CreateAndBindVAO();
 
@@ -133,7 +147,7 @@ Model* ModelLoader::CreateModel(Mesh* mesh)
     CreateAndBindEBO();
     AddIndices(mesh->GetIndices());
 
-    Model* model = new Model(currentVAOId, currentVBOId, currentEBOId, mesh->GetIndices().size());
+    Model* model = new Model(currentVAOId, currentVBOId, currentEBOId, mesh->GetIndices().size(), texture);
 
     UnbindVAO();
 
@@ -145,7 +159,7 @@ Model* ModelLoader::CreateModel(Mesh* mesh)
 Model* ModelLoader::LoadModelFromFile(std::string fileName)
 {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
+    const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_GenNormals);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
@@ -154,7 +168,8 @@ Model* ModelLoader::LoadModelFromFile(std::string fileName)
     }
 
     std::vector<Mesh*> meshes;
-    ProcessNode(scene->mRootNode, scene, meshes);
+    std::vector<Texture*> textures;
+    ProcessNode(scene->mRootNode, scene, meshes, textures);
 
-    return ModelLoader::CreateModel(meshes[0]);
+    return ModelLoader::CreateModel(meshes[0], textures[0]);
 }

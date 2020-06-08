@@ -1,12 +1,14 @@
 #include "Model.hpp"
 
-Model::Model(uint32_t vaoId, uint32_t vboId, uint32_t eboId, uint32_t verticesCount)
+Model::Model(uint32_t vaoId, uint32_t vboId, uint32_t eboId, uint32_t verticesCount, Texture* texture)
 {
 	this->vaoId = vaoId;
 	this->vboId = vboId;
 	this->eboId = eboId;
 
 	this->verticesCount = verticesCount;
+
+	this->texture = texture;
 }
 
 Model::~Model()
@@ -24,4 +26,9 @@ uint32_t Model::GetVAOId()
 uint32_t Model::GetVerticesCount()
 {
 	return this->verticesCount;
+}
+
+Texture* Model::GetTexture()
+{
+	return this->texture;
 }

@@ -6,6 +6,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "model/Texture.hpp"
+
 class Model 
 {
 private:
@@ -14,10 +16,13 @@ private:
     uint32_t eboId;
 
     uint32_t verticesCount;
+
+    Texture* texture;
 public:
-    Model(uint32_t vaoId, uint32_t vboId, uint32_t eboId, uint32_t verticesCount);
+    Model(uint32_t vaoId, uint32_t vboId, uint32_t eboId, uint32_t verticesCount, Texture* texture);
     ~Model();
 
     uint32_t GetVAOId();
     uint32_t GetVerticesCount();
+    Texture* GetTexture();
 };

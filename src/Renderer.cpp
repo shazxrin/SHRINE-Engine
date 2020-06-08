@@ -12,8 +12,11 @@ void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entit
 	shaderProgram->Start();
 
 	// TODO: Remove this 'wireframe' rendering mode.
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, entity->GetModel()->GetTexture()->GetTextureId());
+
 	glm::mat4 transform = glm::mat4(1.0f);
 	transform = glm::translate(transform, entity->position);
 	// TODO: Find a better way to rotate.

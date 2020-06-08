@@ -28,6 +28,8 @@
     <ClCompile Include="src\model\Mesh.cpp" />
     <ClCompile Include="src\model\Model.cpp" />
     <ClCompile Include="src\model\ModelLoader.cpp" />
+    <ClCompile Include="src\model\Texture.cpp" />
+    <ClCompile Include="src\model\TextureLoader.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\demo\DemoScene.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
@@ -41,6 +43,8 @@
     <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\demo\DemoScene.hpp" />
+    <ClInclude Include="src\model\Texture.hpp" />
+    <ClInclude Include="src\model\TextureLoader.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\model\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />

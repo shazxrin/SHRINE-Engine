@@ -11,6 +11,7 @@
 #include <glm/vec3.hpp>
 
 #include "DisplayManager.hpp"
+#include "model/TextureLoader.hpp"
 #include "Config.hpp"
 #include "demo/DemoScene.hpp"
 #include "Renderer.hpp"
@@ -79,6 +80,8 @@ int main()
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 	}
+
+	TextureLoader::CleanUp();
 
 	DisplayManager::CloseWindow();
 
