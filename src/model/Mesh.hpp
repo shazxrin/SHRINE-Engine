@@ -7,11 +7,11 @@
 
 class Mesh {
 private:
-	std::vector<Vertex> vertices;
+	std::vector<Vertex> vertexes;
 	std::vector<uint32_t> indices;
 public:
-	Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices);
+	Mesh(std::vector<Vertex> vertexes, std::vector<uint32_t> indices);
 
-	std::vector<Vertex>& GetVertices();
+	std::vector<Vertex>& GetVertexes();
 	std::vector<uint32_t>& GetIndices();
 };

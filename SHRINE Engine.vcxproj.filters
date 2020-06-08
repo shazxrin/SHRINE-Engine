@@ -42,9 +42,6 @@
     <ClCompile Include="src\utils\Result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\model\ManualModelLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,13 +83,7 @@
     <ClInclude Include="src\shader\ShaderProgram.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\shader\Attribute.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\Result.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\ManualModelLoader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\entities\Entity.hpp">
@@ -120,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Attribute.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,14 +1,14 @@
 #include "Mesh.hpp"
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices)
+Mesh::Mesh(std::vector<Vertex> vertexes, std::vector<uint32_t> indices)
 {
-	this->vertices = vertices;
+	this->vertexes = vertexes;
 	this->indices = indices;
 }
 
-std::vector<Vertex>& Mesh::GetVertices()
+std::vector<Vertex>& Mesh::GetVertexes()
 {
-	return this->vertices;
+	return this->vertexes;
 }
 
 std::vector<uint32_t>& Mesh::GetIndices()

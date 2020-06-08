@@ -1,16 +1,19 @@
 #include "Model.hpp"
 
-Model::Model(uint32_t vaoId, std::vector<uint32_t> bufferIds, uint64_t verticesCount)
+Model::Model(uint32_t vaoId, uint32_t vboId, uint32_t eboId, uint32_t verticesCount)
 {
 	this->vaoId = vaoId;
-	this->bufferIds = bufferIds;
+	this->vboId = vboId;
+	this->eboId = eboId;
+
 	this->verticesCount = verticesCount;
 }
 
 Model::~Model()
 {
 	glDeleteVertexArrays(1, &vaoId);
-	glDeleteBuffers(bufferIds.size(), bufferIds.data());
+	glDeleteBuffers(1, &vboId);
+	glDeleteBuffers(1, &eboId);
 }
 
 uint32_t Model::GetVAOId()
@@ -18,7 +21,7 @@ uint32_t Model::GetVAOId()
 	return this->vaoId;
 }
 
-uint64_t Model::GetVerticesCount()
+uint32_t Model::GetVerticesCount()
 {
 	return this->verticesCount;
 }

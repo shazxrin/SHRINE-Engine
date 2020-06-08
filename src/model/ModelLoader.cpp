@@ -1,30 +1,66 @@
 #include <iostream>
 #include <cstdint>
 
+#include <glm/gtc/type_ptr.hpp>
+
 #include "ModelLoader.hpp"
-#include "ManualModelLoader.hpp"
+#include "model/Attribute.hpp"
 
-Model* ModelLoader::LoadModelFromFile(std::string fileName)
+uint32_t ModelLoader::currentVAOId = 0;
+uint32_t ModelLoader::currentVBOId = 0;
+uint32_t ModelLoader::currentEBOId = 0;
+
+void ModelLoader::CreateAndBindVAO()
 {
-	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
+    glGenVertexArrays(1, &currentVAOId);
+    glBindVertexArray(currentVAOId);
+}
 
-	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-	{
-		std::cout << "Error loading model!" << importer.GetErrorString() << std::endl;
-		return nullptr;
-	}
+void ModelLoader::CreateAndBindVBO()
+{
+    glGenBuffers(1, &currentVBOId);
+    glBindBuffer(GL_ARRAY_BUFFER, currentVBOId);
+}
 
-    std::vector<Mesh*> meshes;
-    ProcessNode(scene->mRootNode, scene, meshes);
 
-    std::vector<glm::vec3> vertexPositions;
-    for (auto vertex : meshes[0]->GetVertices())
+void ModelLoader::CreateAndBindEBO()
+{
+    glGenBuffers(1, &currentEBOId);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, currentEBOId);
+}
+
+void ModelLoader::UnbindVAO()
+{
+    glBindVertexArray(0);
+}
+
+void ModelLoader::AddVertexes(std::vector<Vertex>& vertexes)
+{
+    std::vector<float> vertexBuffer = {};
+    for (auto vertex : vertexes)
     {
-        vertexPositions.push_back(vertex.position);
+        vertexBuffer.push_back(vertex.position.x);
+        vertexBuffer.push_back(vertex.position.y);
+        vertexBuffer.push_back(vertex.position.z);
+
+        vertexBuffer.push_back(vertex.normal.x);
+        vertexBuffer.push_back(vertex.normal.y);
+        vertexBuffer.push_back(vertex.normal.z);
+
+        vertexBuffer.push_back(vertex.uvCoordinates.x);
+        vertexBuffer.push_back(vertex.uvCoordinates.y);
     }
 
-	return ManualModelLoader::CreateModel(vertexPositions, meshes[0]->GetIndices());
+    uint16_t stride = sizeof(float) * 8;
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexBuffer.size(), vertexBuffer.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(Attribute::POSITION_LOCATION, 3, GL_FLOAT, GL_FALSE, stride, 0);
+    glVertexAttribPointer(Attribute::NORMAL_LOCATION, 3, GL_FLOAT, GL_FALSE, stride, (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(Attribute::UV_COORDS_LOCATION, 2, GL_FLOAT, GL_FALSE, stride, (void*)(6 * sizeof(float)));
+}
+
+void ModelLoader::AddIndices(std::vector<uint32_t>& indices)
+{
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * indices.size(), indices.data(), GL_STATIC_DRAW);
 }
 
 void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes)
@@ -85,4 +121,40 @@ Mesh* ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
     }
 
     return new Mesh(vertices, indices);
+}
+
+Model* ModelLoader::CreateModel(Mesh* mesh)
+{
+    CreateAndBindVAO();
+
+    CreateAndBindVBO();
+    AddVertexes(mesh->GetVertexes());
+
+    CreateAndBindEBO();
+    AddIndices(mesh->GetIndices());
+
+    Model* model = new Model(currentVAOId, currentVBOId, currentEBOId, mesh->GetIndices().size());
+
+    UnbindVAO();
+
+    delete mesh;
+
+    return model;
+}
+
+Model* ModelLoader::LoadModelFromFile(std::string fileName)
+{
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
+
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+    {
+        std::cout << "Error loading model!" << importer.GetErrorString() << std::endl;
+        return nullptr;
+    }
+
+    std::vector<Mesh*> meshes;
+    ProcessNode(scene->mRootNode, scene, meshes);
+
+    return ModelLoader::CreateModel(meshes[0]);
 }

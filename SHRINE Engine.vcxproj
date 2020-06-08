@@ -28,7 +28,6 @@
     <ClCompile Include="src\model\Mesh.cpp" />
     <ClCompile Include="src\model\Model.cpp" />
     <ClCompile Include="src\model\ModelLoader.cpp" />
-    <ClCompile Include="src\model\ManualModelLoader.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\demo\DemoScene.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
@@ -43,12 +42,11 @@
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\demo\DemoScene.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
-    <ClInclude Include="src\shader\Attribute.hpp" />
+    <ClInclude Include="src\model\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\model\Mesh.hpp" />
     <ClInclude Include="src\model\Model.hpp" />
     <ClInclude Include="src\model\ModelLoader.hpp" />
-    <ClInclude Include="src\model\ManualModelLoader.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\shader\Shader.hpp" />
     <ClInclude Include="src\shader\ShaderLoader.hpp" />

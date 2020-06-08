@@ -10,7 +10,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "ShaderProgram.hpp"
-#include "Attribute.hpp"
+#include "model/Attribute.hpp"
 
 ShaderProgram::ShaderProgram()
 {
@@ -45,6 +45,8 @@ void ShaderProgram::Build()
 	}
 	
 	glBindAttribLocation(shaderProgramId, Attribute::POSITION_LOCATION, Attribute::POSITION_NAME.data());
+	glBindAttribLocation(shaderProgramId, Attribute::NORMAL_LOCATION, Attribute::NORMAL_NAME.data());
+	glBindAttribLocation(shaderProgramId, Attribute::UV_COORDS_LOCATION, Attribute::UV_COORDS_NAME.data());
 
 	glLinkProgram(shaderProgramId);
 	glValidateProgram(shaderProgramId);

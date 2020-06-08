@@ -13,7 +13,7 @@ DemoScene::DemoScene()
 	camera->Update();
 
 	// Load model into an entity.
-	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("test.obj"));
+	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("bottle.obj"));
 	entity = std::make_shared<Entity>(testModel);
 	entity->rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 	entity->scale = glm::vec3(1.0f, 1.0f, 1.0f);

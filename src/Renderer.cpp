@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Renderer.hpp"
-#include "shader/Attribute.hpp"
+#include "model/Attribute.hpp"
 #include "shader/Uniform.hpp"
 
 void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entity> entity, std::shared_ptr<ShaderProgram> shaderProgram)
@@ -30,9 +30,16 @@ void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entit
 	shaderProgram->SetMatrix4(Uniform::PROJECTION.data(), projection);
 
 	glBindVertexArray(entity->GetModel()->GetVAOId());
+
 	glEnableVertexAttribArray(Attribute::POSITION_LOCATION);
+	glEnableVertexAttribArray(Attribute::NORMAL_LOCATION);
+	glEnableVertexAttribArray(Attribute::UV_COORDS_LOCATION);
+
 	glDrawElements(GL_TRIANGLES, entity->GetModel()->GetVerticesCount(), GL_UNSIGNED_INT, 0);
+
 	glDisableVertexAttribArray(Attribute::POSITION_LOCATION);
+	glDisableVertexAttribArray(Attribute::NORMAL_LOCATION);
+	glDisableVertexAttribArray(Attribute::UV_COORDS_LOCATION);
 	glBindVertexArray(0);
 	
 	shaderProgram->Stop();
