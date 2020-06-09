@@ -159,7 +159,7 @@ Model* ModelLoader::CreateModel(Mesh* mesh, Texture* texture)
 Model* ModelLoader::LoadModelFromFile(std::string fileName)
 {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_GenNormals);
+    const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {

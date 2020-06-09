@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <glm/mat4x4.hpp>
+#include <glm/vec3.hpp>
 
 #include "Shader.hpp"
 
@@ -21,6 +22,7 @@ public:
 	void Build();
 
 	void SetMatrix4(std::string uniformName, glm::mat4 value);
+	void SetVec3(std::string uniformName, glm::vec3 value);
 
 	void Start();
 	void Stop();

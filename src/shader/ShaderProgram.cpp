@@ -76,3 +76,10 @@ void ShaderProgram::SetMatrix4(std::string uniformName, glm::mat4 value)
 	uint32_t location = glGetUniformLocation(shaderProgramId, uniformName.c_str());
 	glUniformMatrix4fv(location, 1, false, glm::value_ptr(value));
 }
+
+void ShaderProgram::SetVec3(std::string uniformName, glm::vec3 value)
+{
+	// TODO: Cache uniform locations.
+	uint32_t location = glGetUniformLocation(shaderProgramId, uniformName.c_str());
+	glUniform3fv(location, 1, glm::value_ptr(value));
+}

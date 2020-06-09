@@ -17,9 +17,13 @@ public:
 	glm::vec3 up;
 
 	void Update();
+
 	void Rotate(float pitch, float yaw);
+
 	void MoveForward(float value);
+	void MoveBackward(float value);
 	void MoveLeft(float value);
 	void MoveRight(float value);
-	void MoveBackward(float value);
+	void MoveUp(float value);
+	void MoveDown(float value);
 };

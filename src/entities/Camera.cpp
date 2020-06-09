@@ -23,6 +23,12 @@ void Camera::MoveForward(float value)
 	target += (-cameraZ * value);
 }
 
+void Camera::MoveBackward(float value)
+{
+	position += (cameraZ * value);
+	target += (cameraZ * value);
+}
+
 void Camera::MoveLeft(float value)
 {
 	position += (-cameraX * value);
@@ -35,8 +41,14 @@ void Camera::MoveRight(float value)
 	target += (cameraX * value);
 }
 
-void Camera::MoveBackward(float value)
+void Camera::MoveUp(float value)
 {
-	position += (+cameraZ * value);
-	target += (+cameraZ * value);
+	position += (cameraY * value);
+	target += (cameraY * value);
+}
+
+void Camera::MoveDown(float value)
+{
+	position += (-cameraY * value);
+	target += (-cameraY * value);
 }

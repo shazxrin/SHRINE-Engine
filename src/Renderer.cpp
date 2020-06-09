@@ -7,7 +7,12 @@
 #include "geometry/Attribute.hpp"
 #include "shader/Uniform.hpp"
 
-void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entity> entity, std::shared_ptr<ShaderProgram> shaderProgram)
+void Renderer::RenderModel(
+	std::shared_ptr<Light> light,
+	std::shared_ptr<Camera> camera, 
+	std::shared_ptr<Entity> entity,
+	std::shared_ptr<ShaderProgram> shaderProgram
+)
 {
 	shaderProgram->Start();
 	
@@ -28,6 +33,9 @@ void Renderer::RenderModel(std::shared_ptr<Camera> camera, std::shared_ptr<Entit
 
 	glm::mat4 projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 	shaderProgram->SetMatrix4(Uniform::PROJECTION.data(), projection);
+
+	shaderProgram->SetVec3(Uniform::LIGHT_POSITION.data(), light->position);
+	shaderProgram->SetVec3(Uniform::LIGHT_COLOR.data(), light->colour);
 
 	glBindVertexArray(entity->GetModel()->GetVAOId());
 

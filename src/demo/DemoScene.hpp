@@ -7,6 +7,7 @@
 #include <glm/trigonometric.hpp>
 #include <glm/gtc/quaternion.hpp>
 
+#include "entities/Light.hpp"
 #include "entities/Camera.hpp"
 #include "entities/Entity.hpp"
 #include "input/InputManager.hpp"
@@ -19,6 +20,7 @@
 class DemoScene : public Scene 
 {
 private:
+	std::shared_ptr<Light> light;
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<Entity> entity;
 	std::shared_ptr<ShaderProgram> shaderProgram;
