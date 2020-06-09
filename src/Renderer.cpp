@@ -36,6 +36,9 @@ void Renderer::RenderModel(
 
 	shaderProgram->SetVec3(Uniform::LIGHT_POSITION.data(), light->position);
 	shaderProgram->SetVec3(Uniform::LIGHT_COLOR.data(), light->colour);
+	shaderProgram->SetVec3(Uniform::CAMERA_POSITION.data(), camera->position);
+	// TODO: Create Material class defining how shiny a model should be.
+	shaderProgram->SetFloat(Uniform::SHININESS.data(), 75.0f);
 
 	glBindVertexArray(entity->GetModel()->GetVAOId());
 

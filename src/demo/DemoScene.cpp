@@ -44,7 +44,7 @@ void DemoScene::Update(float deltaTime)
 
 	camera->Update();
 
-	float camMovementDelta = 0.01f * deltaTime;
+	float camMovementDelta = 0.005f * deltaTime;
 	if (InputManager::IsKeyPressed(GLFW_KEY_W))
 	{
 		camera->MoveForward(camMovementDelta);

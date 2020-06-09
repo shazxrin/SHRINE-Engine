@@ -23,6 +23,7 @@ public:
 
 	void SetMatrix4(std::string uniformName, glm::mat4 value);
 	void SetVec3(std::string uniformName, glm::vec3 value);
+	void SetFloat(std::string uniformName, float value);
 
 	void Start();
 	void Stop();

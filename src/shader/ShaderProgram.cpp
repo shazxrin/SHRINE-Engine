@@ -83,3 +83,10 @@ void ShaderProgram::SetVec3(std::string uniformName, glm::vec3 value)
 	uint32_t location = glGetUniformLocation(shaderProgramId, uniformName.c_str());
 	glUniform3fv(location, 1, glm::value_ptr(value));
 }
+
+void ShaderProgram::SetFloat(std::string uniformName, float value)
+{
+	// TODO: Cache uniform locations.
+	uint32_t location = glGetUniformLocation(shaderProgramId, uniformName.c_str());
+	glUniform1f(location, value);
+}

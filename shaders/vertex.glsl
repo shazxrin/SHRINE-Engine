@@ -8,9 +8,11 @@ uniform mat4 transform;
 uniform mat4 view;
 uniform mat4 projection;
 uniform vec3 lightPosition;
+uniform vec3 cameraPosition;
 
 out vec2 texCoords;
 out vec3 toLightDir;
+out vec3 toCameraDir;
 out vec3 surfaceNormal;
 
 void main() {
@@ -19,5 +21,6 @@ void main() {
 
 	texCoords = uvCoords;
 	toLightDir = normalize(lightPosition - newPosition);
+	toCameraDir = normalize(cameraPosition - newPosition);
 	surfaceNormal = normalize(vec3(transform * vec4(normal, 1.0f)));
 }
