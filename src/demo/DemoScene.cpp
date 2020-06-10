@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "DemoScene.hpp"
-#include "geometry/ModelLoader.hpp"
 
 DemoScene::DemoScene()
 {

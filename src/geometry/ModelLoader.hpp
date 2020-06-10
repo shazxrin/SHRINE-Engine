@@ -2,17 +2,25 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <cstdint>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <glm/gtc/type_ptr.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 #include "texture/Texture.hpp"
-#include "Vertex.hpp"
-#include "Model.hpp"
-#include "Mesh.hpp"
+#include "texture/TextureLoader.hpp"
+#include "geometry/Vertex.hpp"
+#include "geometry/Model.hpp"
+#include "geometry/Mesh.hpp"
+#include "geometry/Attribute.hpp"
 
-class ModelLoader {
+class ModelLoader 
+{
 private:
 	static uint32_t currentVAOId;
 	static uint32_t currentVBOId;

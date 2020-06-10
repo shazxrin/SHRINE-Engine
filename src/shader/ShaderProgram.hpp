@@ -1,13 +1,20 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <memory>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
 
-#include "Shader.hpp"
+#include "geometry/Attribute.hpp"
+#include "shader/Shader.hpp"
 
 class ShaderProgram
 {

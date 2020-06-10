@@ -13,9 +13,10 @@
 #include "input/InputManager.hpp"
 #include "shader/ShaderProgram.hpp"
 #include "shader/ShaderLoader.hpp"
-#include "Renderer.hpp"
 #include "shader/Shader.hpp"
+#include "geometry/ModelLoader.hpp"
 #include "scene/Scene.hpp"
+#include "Renderer.hpp"
 
 class DemoScene : public Scene 
 {

@@ -1,13 +1,4 @@
-#include <iostream>
-#include <cstdint>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <glm/gtc/type_ptr.hpp>
-
 #include "ModelLoader.hpp"
-#include "Attribute.hpp"
-#include "texture/TextureLoader.hpp"
 
 uint32_t ModelLoader::currentVAOId = 0;
 uint32_t ModelLoader::currentVBOId = 0;

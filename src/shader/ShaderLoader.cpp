@@ -1,11 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include "ShaderLoader.hpp"
 
 std::string ShaderLoader::LoadShaderSourceFile(std::string fileName)

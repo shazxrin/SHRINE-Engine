@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "DisplayManager.hpp"
 
 GLFWwindow* DisplayManager::window = nullptr;

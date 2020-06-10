@@ -6,7 +6,8 @@
 
 #include "geometry/Model.hpp"
 
-class Entity {
+class Entity 
+{
 private:
 	std::shared_ptr<Model> model;
 public:

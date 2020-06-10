@@ -1,12 +1,7 @@
-#include <iostream>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "TextureLoader.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-
-#include "TextureLoader.hpp"
 
 std::unordered_map<std::string, Texture*> TextureLoader::cache = {};
 

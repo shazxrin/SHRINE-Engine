@@ -2,7 +2,12 @@
 
 #include <string>
 #include <unordered_map> 
-#include <texture/Texture.hpp>
+#include <iostream>
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "texture/Texture.hpp"
 
 class TextureLoader
 {

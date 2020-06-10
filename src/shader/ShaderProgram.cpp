@@ -1,16 +1,4 @@
-#pragma once
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <glm/gtc/type_ptr.hpp>
-
 #include "ShaderProgram.hpp"
-#include "geometry/Attribute.hpp"
 
 ShaderProgram::ShaderProgram()
 {

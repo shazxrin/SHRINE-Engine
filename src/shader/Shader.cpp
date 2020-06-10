@@ -1,8 +1,5 @@
 #include "Shader.hpp"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 Shader::Shader(uint32_t shaderId, ShaderType type)
 {
 	this->shaderId = shaderId;

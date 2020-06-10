@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <string>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <glm/mat4x4.hpp>
 
 enum class ShaderType { VERTEX, FRAGMENT };

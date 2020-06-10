@@ -2,8 +2,15 @@
 
 #include <cstdint>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
-#include "Shader.hpp"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "shader/Shader.hpp"
 
 class ShaderLoader
 {

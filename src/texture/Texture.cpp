@@ -1,8 +1,5 @@
 #include "Texture.hpp"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 Texture::Texture(std::string name, uint32_t id)
 {
 	this->name = name;

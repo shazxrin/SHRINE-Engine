@@ -1,11 +1,4 @@
-#include <memory>
-
-#include <glm/mat4x4.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
 #include "Renderer.hpp"
-#include "geometry/Attribute.hpp"
-#include "shader/Uniform.hpp"
 
 void Renderer::RenderModel(
 	std::shared_ptr<Light> light,

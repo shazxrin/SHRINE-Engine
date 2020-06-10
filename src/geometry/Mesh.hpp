@@ -3,9 +3,10 @@
 #include <vector>
 #include <cstdint>
 
-#include "Vertex.hpp"
+#include "geometry/Vertex.hpp"
 
-class Mesh {
+class Mesh 
+{
 private:
 	std::vector<Vertex> vertexes;
 	std::vector<uint32_t> indices;
