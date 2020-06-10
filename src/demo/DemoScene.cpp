@@ -11,13 +11,13 @@ DemoScene::DemoScene()
 
 	// Setup camera.
 	camera = std::make_shared<Camera>();
-	camera->position = glm::vec3(0.0f, 0.0f, 3.0f);
+	camera->position = glm::vec3(0.0f, 5.0f, 10.0f);
 	camera->target = glm::vec3(0.0f, 0.0f, 0.0f);
 	camera->up = glm::vec3(0.0f, 1.0f, 0.0f);
 	camera->Init();
 
 	// Load model into an entity.
-	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("bunny.obj"));
+	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("terrain.obj"));
 	entity = std::make_shared<Entity>(testModel);
 	entity->rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 	entity->scale = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -31,7 +31,7 @@ DemoScene::DemoScene()
 	shaderProgram->Build();
 }
 
-void DemoScene::Update(float deltaTime)
+void DemoScene::Update(double deltaTime)
 {
 	static glm::vec2 prevMousePos = InputManager::GetMousePos();
 	glm::vec2 currentMousePos = InputManager::GetMousePos();

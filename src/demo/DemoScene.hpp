@@ -28,5 +28,5 @@ private:
 public:
 	DemoScene();
 
-	void Update(float deltaTime);
+	void Update(double deltaTime);
 };
