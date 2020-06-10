@@ -16,7 +16,7 @@ public:
 	glm::vec3 position;
 	glm::vec3 up;
 
-	void Update();
+	void Init();
 
 	void Rotate(float pitch, float yaw);
 

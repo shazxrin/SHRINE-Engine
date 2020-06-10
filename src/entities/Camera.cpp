@@ -1,6 +1,6 @@
 #include "Camera.hpp"
 
-void Camera::Update()
+void Camera::Init()
 {
 	direction = target - position;
 	cameraZ = glm::normalize(position - target);
@@ -13,8 +13,14 @@ void Camera::Rotate(float pitch, float yaw)
 	glm::quat rotationX = glm::angleAxis(glm::radians(pitch), cameraX);
 	glm::quat rotationY = glm::angleAxis(glm::radians(yaw), cameraY);
 	glm::quat finalRotation = glm::normalize(glm::cross(rotationY, rotationX));
+
 	direction = glm::rotate(finalRotation, direction);
 	target = position + direction;
+
+	// Rotate camera axis.
+	cameraX = glm::rotate(finalRotation, cameraX);
+	cameraY = glm::rotate(finalRotation, cameraY);
+	cameraZ = glm::rotate(finalRotation, cameraZ);
 }
 
 void Camera::MoveForward(float value)
