@@ -24,7 +24,6 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	
 	// Initialize OpenGL window.
 	Result result = DisplayManager::InitWindow();
 	if (result.GetStatus() == Result::Status::FAIL)
@@ -52,9 +51,9 @@ int main()
 	std::shared_ptr<DemoScene> demoScene = std::make_shared<DemoScene>();
 
 	// Engine loop.
-	float prevTimeMillis = 0.0f;
-	float currentTimeMillis = 0.0f;
-	float deltaTimeMillis = 0.0f;
+	double prevTimeMillis = 0.0f;
+	double currentTimeMillis = 0.0f;
+	double deltaTimeMillis = 0.0f;
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -62,9 +61,9 @@ int main()
 	while (!DisplayManager::ShouldWindowClose()) 
 	{
 		// Calculate delta time and release CPU if necessary.
-		currentTimeMillis = glfwGetTime() * 1000.0f;
+		currentTimeMillis = glfwGetTime() * 1000.0;
 		deltaTimeMillis = currentTimeMillis - prevTimeMillis;
-		if (deltaTimeMillis < 1000.0f / Config::TARGET_FPS)
+		if (deltaTimeMillis < 1000.0 / Config::TARGET_FPS)
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds((1000 / Config::TARGET_FPS) - static_cast<long>(deltaTimeMillis)));
 			continue;
