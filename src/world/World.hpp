@@ -1,6 +1,6 @@
 #pragma once
 
-class Scene
+class World
 {
 public:
 	virtual void Update(double deltaTime) = 0;

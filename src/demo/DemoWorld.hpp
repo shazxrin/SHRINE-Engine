@@ -15,10 +15,10 @@
 #include "shader/ShaderLoader.hpp"
 #include "shader/Shader.hpp"
 #include "geometry/ModelLoader.hpp"
-#include "scene/Scene.hpp"
+#include "world/World.hpp"
 #include "Renderer.hpp"
 
-class DemoScene : public Scene 
+class DemoWorld : public World
 {
 private:
 	std::shared_ptr<Light> light;
@@ -26,7 +26,7 @@ private:
 	std::shared_ptr<Entity> entity;
 	std::shared_ptr<ShaderProgram> shaderProgram;
 public:
-	DemoScene();
+	DemoWorld();
 
 	void Update(double deltaTime);
 };

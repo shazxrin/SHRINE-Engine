@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "DemoScene.hpp"
+#include "DemoWorld.hpp"
 
-DemoScene::DemoScene()
+DemoWorld::DemoWorld()
 {
 	// Setup light.
 	light = std::make_shared<Light>();
@@ -31,7 +31,7 @@ DemoScene::DemoScene()
 	shaderProgram->Build();
 }
 
-void DemoScene::Update(double deltaTime)
+void DemoWorld::Update(double deltaTime)
 {
 	static glm::vec2 prevMousePos = InputManager::GetMousePos();
 	glm::vec2 currentMousePos = InputManager::GetMousePos();

@@ -13,7 +13,7 @@
 #include "DisplayManager.hpp"
 #include "texture/TextureLoader.hpp"
 #include "Config.hpp"
-#include "demo/DemoScene.hpp"
+#include "demo/DemoWorld.hpp"
 #include "Renderer.hpp"
 
 int main() 
@@ -48,7 +48,7 @@ int main()
 	glfwSetInputMode(DisplayManager::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// Set up demo scene.
-	std::shared_ptr<DemoScene> demoScene = std::make_shared<DemoScene>();
+	std::shared_ptr<DemoWorld> demoWorld = std::make_shared<DemoWorld>();
 
 	// Engine loop.
 	double prevTimeMillis = 0.0f;
@@ -75,7 +75,7 @@ int main()
 		glClearColor(0.588f, 0.588f, 0.992f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		demoScene->Update(deltaTimeMillis);
+		demoWorld->Update(deltaTimeMillis);
 
 		glfwSwapBuffers(DisplayManager::GetWindow());
 	}
