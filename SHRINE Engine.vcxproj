@@ -50,7 +50,7 @@
     <ClInclude Include="src\demo\DemoWorld.hpp" />
     <ClInclude Include="src\assets\Texture.hpp" />
     <ClInclude Include="src\assets\TextureLoader.hpp" />
-    <ClInclude Include="src\world\World.hpp" />
+    <ClInclude Include="src\entities\World.hpp" />
     <ClInclude Include="src\assets\Attribute.hpp" />
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\assets\Mesh.hpp" />
