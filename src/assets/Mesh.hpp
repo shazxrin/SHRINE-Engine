@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstdint>
 
-#include "geometry/Vertex.hpp"
+#include "assets/Vertex.hpp"
 
 class Mesh 
 {

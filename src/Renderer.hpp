@@ -13,7 +13,7 @@
 #include "entities/Camera.hpp"
 #include "shader/ShaderProgram.hpp"
 #include "shader/Uniform.hpp"
-#include "geometry/Attribute.hpp"
+#include "assets/Attribute.hpp"
 
 class Renderer 
 {

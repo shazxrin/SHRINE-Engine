@@ -12,13 +12,13 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "texture/Texture.hpp"
-#include "texture/TextureLoader.hpp"
-#include "geometry/Scene.hpp"
-#include "geometry/Vertex.hpp"
-#include "geometry/Model.hpp"
-#include "geometry/Mesh.hpp"
-#include "geometry/Attribute.hpp"
+#include "assets/Texture.hpp"
+#include "assets/TextureLoader.hpp"
+#include "assets/Scene.hpp"
+#include "assets/Vertex.hpp"
+#include "assets/Model.hpp"
+#include "assets/Mesh.hpp"
+#include "assets/Attribute.hpp"
 
 class AssetLoader 
 {

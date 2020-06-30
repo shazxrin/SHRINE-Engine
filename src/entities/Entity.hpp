@@ -4,7 +4,7 @@
 
 #include <glm/vec3.hpp>
 
-#include "geometry/Scene.hpp"
+#include "assets/Scene.hpp"
 
 class Entity 
 {

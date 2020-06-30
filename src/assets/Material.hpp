@@ -1,6 +1,6 @@
 #pragma once
 
-#include <texture\Texture.hpp>
+#include <assets\Texture.hpp>
 
 class Material
 {

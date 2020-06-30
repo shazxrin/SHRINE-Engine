@@ -13,7 +13,7 @@
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
 
-#include "geometry/Attribute.hpp"
+#include "assets/Attribute.hpp"
 #include "shader/Shader.hpp"
 
 class ShaderProgram

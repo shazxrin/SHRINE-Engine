@@ -11,7 +11,7 @@
 #include <glm/vec3.hpp>
 
 #include "DisplayManager.hpp"
-#include "texture/TextureLoader.hpp"
+#include "assets/TextureLoader.hpp"
 #include "Config.hpp"
 #include "demo/DemoWorld.hpp"
 #include "Renderer.hpp"

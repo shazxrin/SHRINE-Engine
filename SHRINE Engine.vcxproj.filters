@@ -45,31 +45,31 @@
     <ClCompile Include="src\entities\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\geometry\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\geometry\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\texture\TextureLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\texture\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\GLAD.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\demo\DemoWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\geometry\Scene.cpp">
+    <ClCompile Include="src\assets\AssetLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\geometry\Material.cpp">
+    <ClCompile Include="src\assets\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\geometry\AssetLoader.cpp">
+    <ClCompile Include="src\assets\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\TextureLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,24 +107,6 @@
     <ClInclude Include="src\Config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\geometry\Attribute.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\geometry\Mesh.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\geometry\Model.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\geometry\Vertex.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\texture\TextureLoader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\texture\Texture.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\entities\Light.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -134,13 +116,31 @@
     <ClInclude Include="src\demo\DemoWorld.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\geometry\Scene.hpp">
+    <ClInclude Include="src\assets\AssetLoader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\geometry\Material.hpp">
+    <ClInclude Include="src\assets\Attribute.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\geometry\AssetLoader.hpp">
+    <ClInclude Include="src\assets\Material.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\Mesh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\Model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\Texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\TextureLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\Vertex.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
