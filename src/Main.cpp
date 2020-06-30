@@ -10,11 +10,11 @@
 #include <GLFW/glfw3.h>
 #include <glm/vec3.hpp>
 
-#include "DisplayManager.hpp"
+#include "graphics/DisplayManager.hpp"
 #include "assets/TextureLoader.hpp"
 #include "Config.hpp"
 #include "demo/DemoWorld.hpp"
-#include "Renderer.hpp"
+#include "graphics/Renderer.hpp"
 
 int main() 
 {

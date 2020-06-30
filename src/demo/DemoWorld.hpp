@@ -16,7 +16,7 @@
 #include "shader/Shader.hpp"
 #include "assets/AssetLoader.hpp"
 #include "entities/World.hpp"
-#include "Renderer.hpp"
+#include "graphics/Renderer.hpp"
 
 class DemoWorld : public World
 {

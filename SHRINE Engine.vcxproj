@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\DisplayManager.cpp" />
+    <ClCompile Include="src\graphics\DisplayManager.cpp" />
     <ClCompile Include="src\entities\Camera.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\assets\Material.cpp" />
     <ClCompile Include="src\assets\Scene.cpp" />
-    <ClCompile Include="src\GLAD.c" />
+    <ClCompile Include="src\utils\GLAD.c" />
     <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\assets\Mesh.cpp" />
@@ -32,7 +32,7 @@
     <ClCompile Include="src\assets\AssetLoader.cpp" />
     <ClCompile Include="src\assets\Texture.cpp" />
     <ClCompile Include="src\assets\TextureLoader.cpp" />
-    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\graphics\Renderer.cpp" />
     <ClCompile Include="src\demo\DemoWorld.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
     <ClCompile Include="src\shader\ShaderLoader.cpp" />
@@ -52,11 +52,11 @@
     <ClInclude Include="src\assets\TextureLoader.hpp" />
     <ClInclude Include="src\entities\World.hpp" />
     <ClInclude Include="src\assets\Attribute.hpp" />
-    <ClInclude Include="src\DisplayManager.hpp" />
+    <ClInclude Include="src\graphics\DisplayManager.hpp" />
     <ClInclude Include="src\assets\Mesh.hpp" />
     <ClInclude Include="src\assets\Model.hpp" />
     <ClInclude Include="src\assets\AssetLoader.hpp" />
-    <ClInclude Include="src\Renderer.hpp" />
+    <ClInclude Include="src\graphics\Renderer.hpp" />
     <ClInclude Include="src\shader\Shader.hpp" />
     <ClInclude Include="src\shader\ShaderLoader.hpp" />
     <ClInclude Include="src\shader\Uniform.hpp" />
