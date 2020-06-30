@@ -14,7 +14,7 @@
 #include "shader/ShaderProgram.hpp"
 #include "shader/ShaderLoader.hpp"
 #include "shader/Shader.hpp"
-#include "geometry/ModelLoader.hpp"
+#include "geometry/AssetLoader.hpp"
 #include "world/World.hpp"
 #include "Renderer.hpp"
 

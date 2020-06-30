@@ -1,34 +1,34 @@
-#include "ModelLoader.hpp"
+#include "AssetLoader.hpp"
 
-uint32_t ModelLoader::currentVAOId = 0;
-uint32_t ModelLoader::currentVBOId = 0;
-uint32_t ModelLoader::currentEBOId = 0;
+uint32_t AssetLoader::currentVAOId = 0;
+uint32_t AssetLoader::currentVBOId = 0;
+uint32_t AssetLoader::currentEBOId = 0;
 
-void ModelLoader::CreateAndBindVAO()
+void AssetLoader::CreateAndBindVAO()
 {
     glGenVertexArrays(1, &currentVAOId);
     glBindVertexArray(currentVAOId);
 }
 
-void ModelLoader::CreateAndBindVBO()
+void AssetLoader::CreateAndBindVBO()
 {
     glGenBuffers(1, &currentVBOId);
     glBindBuffer(GL_ARRAY_BUFFER, currentVBOId);
 }
 
 
-void ModelLoader::CreateAndBindEBO()
+void AssetLoader::CreateAndBindEBO()
 {
     glGenBuffers(1, &currentEBOId);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, currentEBOId);
 }
 
-void ModelLoader::UnbindVAO()
+void AssetLoader::UnbindVAO()
 {
     glBindVertexArray(0);
 }
 
-void ModelLoader::AddVertexes(std::vector<Vertex>& vertexes)
+void AssetLoader::AddVertexes(std::vector<Vertex>& vertexes)
 {
     std::vector<float> vertexBuffer = {};
     for (auto vertex : vertexes)
@@ -52,31 +52,39 @@ void ModelLoader::AddVertexes(std::vector<Vertex>& vertexes)
     glVertexAttribPointer(Attribute::UV_COORDS_LOCATION, 2, GL_FLOAT, GL_FALSE, stride, (void*)(6 * sizeof(float)));
 }
 
-void ModelLoader::AddIndices(std::vector<uint32_t>& indices)
+void AssetLoader::AddIndices(std::vector<uint32_t>& indices)
 {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * indices.size(), indices.data(), GL_STATIC_DRAW);
 }
 
-void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes, std::vector<Texture*>& textures)
+void AssetLoader::ProcessNodes(aiNode* node, const aiScene* scene, std::vector<Model*>& outModels)
 {
-    // Process all the node's meshes (if any).
     for (uint32_t i = 0; i < node->mNumMeshes; i++)
     {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 
-        meshes.push_back(ProcessMesh(mesh, scene));
-        textures.push_back(ProcessTexture(mesh, scene));
+        outModels.push_back(GetModelFromNode(mesh, scene));
     }
 
     // Then do the same for each of its children.
     for (uint32_t i = 0; i < node->mNumChildren; i++)
     {
-        ProcessNode(node->mChildren[i], scene, meshes, textures);
+        ProcessNodes(node->mChildren[i], scene, outModels);
     }
 }
 
+Model* AssetLoader::GetModelFromNode(aiMesh* mesh, const aiScene* scene)
+{
+    Mesh* processedMesh = ProcessMesh(mesh, scene);
+    Material* processedMaterial = ProcessMaterial(mesh, scene);
 
-Mesh* ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
+    Model* model = CreateModel(processedMesh, processedMaterial);
+
+    return model;
+}
+
+
+Mesh* AssetLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 {
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
@@ -120,15 +128,21 @@ Mesh* ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
     return new Mesh(vertices, indices);
 }
 
-Texture* ModelLoader::ProcessTexture(aiMesh* mesh, const aiScene* scene)
+Material* AssetLoader::ProcessMaterial(aiMesh* mesh, const aiScene* scene)
 {
     aiString path;
+
     scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path);
-    
-    return TextureLoader::LoadTexture(path.C_Str());
+    Texture* diffuse = nullptr;
+    if (path.length > 0)
+    {
+        diffuse = TextureLoader::LoadTexture(path.C_Str());
+    }
+
+    return new Material(diffuse);
 }
 
-Model* ModelLoader::CreateModel(Mesh* mesh, Texture* texture)
+Model* AssetLoader::CreateModel(Mesh* mesh, Material* material)
 {
     CreateAndBindVAO();
 
@@ -138,7 +152,7 @@ Model* ModelLoader::CreateModel(Mesh* mesh, Texture* texture)
     CreateAndBindEBO();
     AddIndices(mesh->GetIndices());
 
-    Model* model = new Model(currentVAOId, currentVBOId, currentEBOId, mesh->GetIndices().size(), texture);
+    Model* model = new Model(currentVAOId, currentVBOId, currentEBOId, mesh->GetIndices().size(), material);
 
     UnbindVAO();
 
@@ -147,7 +161,7 @@ Model* ModelLoader::CreateModel(Mesh* mesh, Texture* texture)
     return model;
 }
 
-Model* ModelLoader::LoadModelFromFile(std::string fileName)
+Scene* AssetLoader::Load3DAsset(std::string fileName)
 {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate);
@@ -158,9 +172,8 @@ Model* ModelLoader::LoadModelFromFile(std::string fileName)
         return nullptr;
     }
 
-    std::vector<Mesh*> meshes;
-    std::vector<Texture*> textures;
-    ProcessNode(scene->mRootNode, scene, meshes, textures);
+    std::vector<Model*> models;
+    ProcessNodes(scene->mRootNode, scene, models);
 
-    return ModelLoader::CreateModel(meshes[0], textures[0]);
+    return new Scene(models);
 }

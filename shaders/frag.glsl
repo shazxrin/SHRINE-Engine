@@ -7,7 +7,7 @@ in vec3 surfaceNormal;
 
 uniform vec3 lightColor;
 uniform float shininess;
-uniform sampler2D baseTexture;
+uniform sampler2D diffuseTexture;
 
 out vec4 FragColor;
 
@@ -23,5 +23,5 @@ void main() {
 
 	//FragColor = vec4(diffuseLighting, 1.0f) * texture(baseTexture, texCoords) + vec4(specularLighting, 1.0f);
 	// TODO: Models with no texture not supported. Remove line below once supported.
-	FragColor = vec4(diffuseLighting, 1.0f) * vec4(1.0f, 1.0f, 1.0f, 1.0f) + vec4(specularLighting, 1.0f);
+	FragColor = vec4(diffuseLighting, 1.0f) * texture(diffuseTexture, texCoords) + vec4(specularLighting, 1.0f);
 }

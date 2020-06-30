@@ -4,18 +4,18 @@
 
 #include <glm/vec3.hpp>
 
-#include "geometry/Model.hpp"
+#include "geometry/Scene.hpp"
 
 class Entity 
 {
 private:
-	std::shared_ptr<Model> model;
+	std::shared_ptr<Scene> scene;
 public:
 	glm::vec3 position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
 
-	Entity(std::shared_ptr<Model> model);
+	Entity(std::shared_ptr<Scene> scene);
 
-	std::shared_ptr<Model> GetModel();
+	std::shared_ptr<Scene> GetScene();
 };

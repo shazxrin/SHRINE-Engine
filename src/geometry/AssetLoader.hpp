@@ -14,12 +14,13 @@
 
 #include "texture/Texture.hpp"
 #include "texture/TextureLoader.hpp"
+#include "geometry/Scene.hpp"
 #include "geometry/Vertex.hpp"
 #include "geometry/Model.hpp"
 #include "geometry/Mesh.hpp"
 #include "geometry/Attribute.hpp"
 
-class ModelLoader 
+class AssetLoader 
 {
 private:
 	static uint32_t currentVAOId;
@@ -34,11 +35,12 @@ private:
 	static void AddVertexes(std::vector<Vertex>& vertexes);
 	static void AddIndices(std::vector<uint32_t>& indices);
 
-	static void ProcessNode(aiNode* node, const aiScene* scene, std::vector<Mesh*>& meshes, std::vector<Texture*>& textures);
+	static void ProcessNodes(aiNode* node, const aiScene* scene, std::vector<Model*>& outModels);
+	static Model* GetModelFromNode(aiMesh* mesh, const aiScene* scene);
 	static Mesh* ProcessMesh(aiMesh* mesh, const aiScene* scene);
-	static Texture* ProcessTexture(aiMesh* mesh, const aiScene* scene);
+	static Material* ProcessMaterial(aiMesh* mesh, const aiScene* scene);
 
-	static Model* CreateModel(Mesh* mesh, Texture* texture);
+	static Model* CreateModel(Mesh* mesh, Material* texture);
 public:
-	static Model* LoadModelFromFile(std::string fileName);
+	static Scene* Load3DAsset(std::string fileName);
 };

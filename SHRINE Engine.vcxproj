@@ -22,12 +22,14 @@
     <ClCompile Include="src\DisplayManager.cpp" />
     <ClCompile Include="src\entities\Camera.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
+    <ClCompile Include="src\geometry\Material.cpp" />
+    <ClCompile Include="src\geometry\Scene.cpp" />
     <ClCompile Include="src\GLAD.c" />
     <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\geometry\Mesh.cpp" />
     <ClCompile Include="src\geometry\Model.cpp" />
-    <ClCompile Include="src\geometry\ModelLoader.cpp" />
+    <ClCompile Include="src\geometry\AssetLoader.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />
     <ClCompile Include="src\texture\TextureLoader.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -42,6 +44,8 @@
     <ClInclude Include="src\entities\Camera.hpp" />
     <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\entities\Light.hpp" />
+    <ClInclude Include="src\geometry\Material.hpp" />
+    <ClInclude Include="src\geometry\Scene.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\demo\DemoWorld.hpp" />
     <ClInclude Include="src\texture\Texture.hpp" />
@@ -51,7 +55,7 @@
     <ClInclude Include="src\DisplayManager.hpp" />
     <ClInclude Include="src\geometry\Mesh.hpp" />
     <ClInclude Include="src\geometry\Model.hpp" />
-    <ClInclude Include="src\geometry\ModelLoader.hpp" />
+    <ClInclude Include="src\geometry\AssetLoader.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\shader\Shader.hpp" />
     <ClInclude Include="src\shader\ShaderLoader.hpp" />

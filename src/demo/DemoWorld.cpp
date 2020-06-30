@@ -17,8 +17,8 @@ DemoWorld::DemoWorld()
 	camera->Init();
 
 	// Load model into an entity.
-	std::shared_ptr<Model> testModel(ModelLoader::LoadModelFromFile("terrain.obj"));
-	entity = std::make_shared<Entity>(testModel);
+	std::shared_ptr<Scene> terrain(AssetLoader::Load3DAsset("bottle.obj"));
+	entity = std::make_shared<Entity>(terrain);
 	entity->rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 	entity->scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
@@ -40,22 +40,22 @@ void DemoWorld::Update(double deltaTime)
 	prevMousePos = currentMousePos;
 
 	float camMovementDelta = 0.005f * deltaTime;
-	if (InputManager::IsKeyPressed(GLFW_KEY_W))
+	if (InputManager::IsKeyPressed(GLFW_KEY_E))
 	{
 		camera->MoveForward(camMovementDelta);
 	}
 
-	if (InputManager::IsKeyPressed(GLFW_KEY_A))
+	if (InputManager::IsKeyPressed(GLFW_KEY_S))
 	{
 		camera->MoveLeft(camMovementDelta);
 	}
 
-	if (InputManager::IsKeyPressed(GLFW_KEY_S))
+	if (InputManager::IsKeyPressed(GLFW_KEY_D))
 	{
 		camera->MoveBackward(camMovementDelta);
 	}
 
-	if (InputManager::IsKeyPressed(GLFW_KEY_D))
+	if (InputManager::IsKeyPressed(GLFW_KEY_F))
 	{
 		camera->MoveRight(camMovementDelta);
 	}
