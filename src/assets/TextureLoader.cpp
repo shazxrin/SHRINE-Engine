@@ -29,9 +29,22 @@ Texture* TextureLoader::LoadTexture(std::string fileName)
     unsigned char* data = stbi_load(fileName.c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
+        std::size_t pos = fileName.find(".");
+        std::string fileExtension = fileName.substr(pos + 1);
         // TODO: Maybe check metadata of image filetype? Didn't include Alpha channel earlier and texture messed up.
         // Very prone to bugs.
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+        uint32_t channel = 0;
+        if (fileExtension == "png")
+        {
+            channel = GL_RGBA;
+        }
+        else if (fileExtension == "jpg" || fileExtension == "jpeg")
+        {
+            channel = GL_RGB;
+        }
+
+        glTexImage2D(GL_TEXTURE_2D, 0, channel, width, height, 0, channel, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else
