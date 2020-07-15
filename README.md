@@ -1,7 +1,7 @@
-# SHRINE Engine
+# ⛩ SHRINE Engine ⛩
 SHRINE Engine - SHazRIN's Experimental Engine
 
-## Setup
+## 🛠 Setup
 
 1. Install dependencies using [vcpkg](https://github.com/microsoft/vcpkg):
 ```
