@@ -9,10 +9,7 @@ This is my personal toy game engine to learn, explore and experiment on real tim
 
 1. Install dependencies using [vcpkg](https://github.com/microsoft/vcpkg):
 ```
-./vcpkg install glfw:x64-windows
-./vcpkg install glm:x64-windows
-./vcpkg install glad:x64-windows
-./vcpkg install assimp:x64-windows
+./vcpkg install glfw:x64-windows glm:x64-windows glad:x64-windows assimp:x64-windows stb:x64-windows
 ```
 
 2. Open .sln project in Visual Studio
